@@ -1,15 +1,23 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import Router from "./Router";
 
 function App() {
+  const [info, setInfo] = useState("");
   const callApi = async () => {
     const data = await (await fetch(`/api`)).json();
-    console.log(data);
+    setInfo(data.hello);
   };
 
   useEffect(() => {
     callApi();
-  },[]);
-  return <div>test</div>;
+  }, []);
+
+  return (
+    <>
+      <Router />
+      {info}
+    </>
+  );
 }
 
 export default App;

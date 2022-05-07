@@ -1,5 +1,5 @@
-function required(key: string, defaultValue: string): string {
-  const value = process.env[key] || defaultValue;
+function required(key: string, defaultValue: string = ""  ): string {
+  const value = process.env[key] || defaultValue ;
   if (value === null) {
     throw new Error(`Key ${key} is undefined`);
   }
@@ -15,11 +15,11 @@ export const config = {
     port: parseInt(required('HOST_PORT', '5050')),
   },
   db: {
-    host: required('DB_HOST', ''),
-    user: required('DB_USER', ''),
-    database: required('DB_DATABASE', ''),
-    password: required('DB_PASSWORD', ''),
-    port: parseInt(required('DB_PORT', '')),
+    host: required('DB_HOST'),
+    user: required('DB_USER'),
+    database: required('DB_DATABASE'),
+    password: required('DB_PASSWORD'),
+    port: parseInt(required('DB_PORT')),
   },
   port: parseInt(required('PORT', '5050')),
   bcrypt: {

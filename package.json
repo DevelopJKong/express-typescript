@@ -1,7 +1,1 @@
-{
-"scripts": {
-    "server": "cd server && npm run start:dev",
-    "client": "cd client && npm start",
-    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
-  }
-}
+{"scripts":{"server":"cd server && npm run start:dev","client":"cd client && npm start","start":"concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""},"dependencies":{"@types/jsonwebtoken":"^8.5.8","jsonwebtoken":"^8.5.1"}}

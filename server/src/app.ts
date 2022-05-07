@@ -5,8 +5,9 @@ import cors from "cors";
 import morgan from 'morgan';
 import apiRouter from './routers/apiRouter';
 import bodyParser from 'body-parser';
+import { config } from './config';
+import { sequelize } from "./db";
 
-const PORT: number = 5000;
 const app: Express = express();
 const logger: Handler = morgan('dev'); 
 
@@ -17,6 +18,10 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/api',apiRouter);
 
-app.listen(PORT, () => {
-  console.log(`http://localhost:${PORT}`);
+
+sequelize.sync().then(() => {
+  console.log("mysql is connecting");
+  app.listen(config.port, () => {
+    console.log(`http://localhost:${config.port}`);
+  })
 });

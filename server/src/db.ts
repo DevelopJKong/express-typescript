@@ -1,13 +1,11 @@
-import mongoose from "mongoose";
+import { config } from './config';
+import SQ from 'sequelize';
 
-mongoose.connect(String(process.env.DB_URL)); // 설정점검 필요
+const { host, user, database, password, port } = config.db;
 
-const db = mongoose.connection;
-
-const handleOpen = () => console.log("db connected");
-const handleError = (error:Error) => console.error("db Error!",error);
-
-db.on("error",handleError);
-db.once("open",handleOpen);
-
-
+export const sequelize = new SQ.Sequelize(database, user, password, {
+  host,
+  dialect: 'mysql',
+  logging: false,
+  port,
+});

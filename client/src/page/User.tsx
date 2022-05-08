@@ -6,7 +6,7 @@ interface Type {
   password: string;
   name: string;
   email: string;
-  url: string;
+  avatar: string;
 }
 
 const User = () => {
@@ -30,7 +30,7 @@ const User = () => {
             <div>{user.password}</div>
             <div>{user.name}</div>
             <div>{user.email}</div>
-            <div>{user.url}</div>
+            <div>{user.avatar}</div>
             <hr/>
           </div>
         ))}

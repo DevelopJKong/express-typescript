@@ -1,17 +1,7 @@
-import SQ, { Optional } from 'sequelize';
-import { sequelize } from '../db';
+import SQ from 'sequelize';
+import { sequelize } from '../../db';
+import { CreateTypeInput, CreateTypeOuput } from './dto/user.dto';
 const DataTypes = SQ.DataTypes;
-
-interface CreateType {
-  id: number;
-  username: string;
-  password: string;
-  name: string;
-  email: string;
-  url: string;
-}
-export interface CreateTypeInput extends Optional<CreateType, 'id'> {}
-export interface CreateTypeOuput extends Required<CreateType> {}
 
 export const User = sequelize.define(
   'user',
@@ -25,6 +15,7 @@ export const User = sequelize.define(
     username: {
       type: DataTypes.STRING(45),
       allowNull: false,
+      unique: true,
     },
     password: {
       type: DataTypes.STRING(128),
@@ -37,8 +28,30 @@ export const User = sequelize.define(
     email: {
       type: DataTypes.STRING(128),
       allowNull: false,
+      unique: true,
     },
-    url: DataTypes.TEXT,
+    regison: {
+      type: DataTypes.STRING(45),
+      allowNull: false,
+    },
+    avatar: { type: DataTypes.TEXT },
+    socialOnly: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+
+    createdAt: {
+      field: 'createdAt',
+      type: 'TIMESTAMP',
+      defaultValue: SQ.literal('CURRENT_TIMESTAMP'),
+      allowNull: false,
+    },
+    updatedAt: {
+      field: 'updatedAt',
+      type: 'TIMESTAMP',
+      defaultValue: SQ.literal('CURRENT_TIMESTAMP'),
+      allowNull: false,
+    },
   },
   { timestamps: false }
 );

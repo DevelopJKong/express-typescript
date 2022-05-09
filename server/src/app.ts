@@ -11,9 +11,10 @@ import { sequelize } from "./db";
 const app: Express = express();
 const logger: Handler = morgan('dev'); 
 
-app.use(logger);
 app.use(cors());
+app.use(logger);
 app.use(bodyParser.json());
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/api',apiRouter);

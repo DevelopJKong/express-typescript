@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 import { config } from './../config';
 
 export async function signup(req: Request, res: Response): Promise<Response> {
-  const { username, password, name, email, avatar,socialOnly,regison } = req.body;
+  const { username, password, name, email, avatar, socialOnly, regison } = req.body;
   //console.log(username,password,name,email,url);
   //과제
   //try catch 로 감싸주기
@@ -21,7 +21,7 @@ export async function signup(req: Request, res: Response): Promise<Response> {
     email,
     avatar,
     socialOnly,
-    regison
+    regison,
   });
   const token = createJwtToken(userId);
   return res.status(201).json({ token, username });
@@ -32,6 +32,9 @@ export async function login(req: Request, res: Response): Promise<Response> {
   //try catch 로 감싸주기
   const { username, password } = req.body;
   const user = await userRepository.findByUsername(username);
+  console.log(typeof username, typeof password); 
+  console.log(username,password);
+  console.log(user);
   if (!user) {
     return res.status(401).json({ message: 'Invalid user or password' });
   }
@@ -43,13 +46,10 @@ export async function login(req: Request, res: Response): Promise<Response> {
   return res.status(200).json({ token, username });
 }
 
-export async function logout(req:Request, res:Response):Promise<void> {
+export async function logout(req: Request, res: Response): Promise<void> {
   console.log(req);
   return res.end();
 }
-
-
-
 
 function createJwtToken(id: number) {
   return jwt.sign({ id }, config.jwt.secretKey, {

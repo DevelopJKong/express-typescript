@@ -1,14 +1,10 @@
-import React from 'react'
-import { useHistory } from 'react-router';
+import { Link } from "react-router-dom";
 
 const Home = () => {
-  const path = useHistory();
-  if(window.location.href.includes("/login")) {
-    path.replace("/");
-  }
   return (
     <div>
       Home
+      <Link to="/login">Login</Link>
     </div>
   );
 };

@@ -14,7 +14,7 @@ import {
 
 
 const persistConfig = {
-    key: "33",
+    key: "typescript_board",
     version: 1.1,
     storage,
   };

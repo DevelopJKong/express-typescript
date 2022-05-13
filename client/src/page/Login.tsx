@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { login } from "../redex/apiCall";
 import styled from "styled-components";
-import { Link ,useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AppDispatch, RootState } from "../redex/store";
 
 const Container = styled.div`
@@ -70,12 +70,6 @@ const Login = () => {
     event.preventDefault();
     login(dispatch, { username, password });
   };
-
-  const user = useSelector((state: RootState) => state.user.currentUser);
-  const path = useHistory();
-  if(user) {
-    path.replace("/");
-  }
   return (
     <Container>
       <Wrapper>

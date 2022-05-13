@@ -1,20 +1,23 @@
-import { useSelector } from "react-redux";
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import { loginState } from "./atoms";
+import { loginSuccessState } from "./atoms";
 import Home from "./page/Home";
 import Login from "./page/Login";
 import User from "./page/User";
 
 const Router = () => {
-  const { currentUser } = useRecoilValue(loginState);
+  const { currentUser } = useRecoilValue(loginSuccessState);
+
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
           <Home />
         </Route>
-        <Route path="/login">{currentUser ? <Redirect to="/" /> : <Login />}</Route>
+        <Route path="/login">
+          <Login />
+        </Route>
+   
         <Route path="/user">
           <User />
         </Route>

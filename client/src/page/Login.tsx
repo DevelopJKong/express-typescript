@@ -11,7 +11,7 @@ const Container = styled.div`
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
     ),
-    url("https://source.unsplash.com/random/1") center;
+    url("https://i.imgur.com/dtuN6qr.png") center;
   background-size: cover;
   display: flex;
   align-items: center;
@@ -22,6 +22,18 @@ const Wrapper = styled.div`
   width: 25%;
   padding: 20px;
   background-color: white;
+  box-shadow: -1px 0px 19px -1px rgb(0 0 0 / 30%);
+`;
+
+const ImgWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const LogoImg = styled.img`
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
 `;
 
 const Title = styled.h1`
@@ -59,6 +71,12 @@ const Error = styled.span`
   color: red;
 `;
 
+const LinkBtn = styled(Link)`
+  padding-bottom: 12px;
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.5);
+`;
+
 interface IForm {
   username: string;
   password: string;
@@ -90,7 +108,7 @@ const Login = () => {
       if (userData.message === "Invalid user or password") {
         throw Error;
       }
-      
+
       return setLoginSuccess({
         currentUser: username,
         token: userData.token,
@@ -98,7 +116,6 @@ const Login = () => {
         error: false,
         expire: Date.now(),
       });
-
     } catch (error) {
       return setLoginFailure(loginFailure);
     }
@@ -111,6 +128,9 @@ const Login = () => {
   return (
     <Container>
       <Wrapper>
+        <ImgWrapper>
+          <LogoImg src="https://i.imgur.com/dtuN6qr.png" />
+        </ImgWrapper>
         <Title>Login</Title>
         <Form onSubmit={handleSubmit(onValid)}>
           <Input
@@ -134,8 +154,8 @@ const Login = () => {
           <Button>LOGIN</Button>
           <Error>{errors?.username?.message}</Error>
           <Error>{errors?.password?.message}</Error>
-          <Link to={`/`}>DO NOT YOU REMEMBER THE PASSWORD?</Link>
-          <Link to={`/login`}>CREATE A NEW ACCOUNT</Link>
+          <LinkBtn to={`/`}>DO NOT YOU REMEMBER THE PASSWORD?</LinkBtn>
+          <LinkBtn to={`/login`}>CREATE A NEW ACCOUNT</LinkBtn>
         </Form>
       </Wrapper>
     </Container>

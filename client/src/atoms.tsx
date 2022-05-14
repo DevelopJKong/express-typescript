@@ -5,6 +5,7 @@ export interface ILogin {
   token: string;
   isFetching: boolean;
   error: boolean;
+  expire: number;
 }
 
 export const loginSuccessState = atom<ILogin>({
@@ -14,5 +15,5 @@ export const loginSuccessState = atom<ILogin>({
 
 export const loginFailureState = atom<ILogin>({
   key: "Fail",
-  default: { currentUser: "", token:"", isFetching: false, error: true },
+  default: { currentUser: "", token:"", isFetching: false, error: true , expire: Date.now() },
 });

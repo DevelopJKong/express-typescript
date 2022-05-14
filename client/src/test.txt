@@ -1,9 +1,0 @@
-//   const [info, setInfo] = useState("");
-//   const callApi = async () => {
-//     const data = await (await fetch(`/api`)).json();
-//     setInfo(data.hello);
-//   };
-// 
-//   useEffect(() => {
-//     callApi();
-//   }, []);

@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
+import { loginSuccessState } from "../atoms";
 
 interface Type {
   id: number;
@@ -10,6 +12,7 @@ interface Type {
 }
 
 const User = () => {
+  const { currentUser } = useRecoilValue(loginSuccessState);
   const [user, setUser] = useState<Type[]>([]);
   const callApi = async () => {
     const data = await (await fetch(`/api/user`)).json();
@@ -22,18 +25,20 @@ const User = () => {
 
   return (
     <div>
-      {user &&
-        user.map((user) => (
-          <div key={user.id}>
-            <div>{user.id}</div>
-            <div>{user.username}</div>
-            <div>{user.password}</div>
-            <div>{user.name}</div>
-            <div>{user.email}</div>
-            <div>{user.avatar}</div>
-            <hr/>
-          </div>
-        ))}
+      {currentUser
+        ? user &&
+          user.map((user) => (
+            <div key={user.id}>
+              <div>{user.id}</div>
+              <div>{user.username}</div>
+              <div>{user.password}</div>
+              <div>{user.name}</div>
+              <div>{user.email}</div>
+              <div>{user.avatar}</div>
+              <hr />
+            </div>
+          ))
+        : <div>please login first</div>}
     </div>
   );
 };

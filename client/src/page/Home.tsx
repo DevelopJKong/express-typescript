@@ -3,15 +3,17 @@ import { useRecoilValue } from "recoil";
 import { loginSuccessState } from "../atoms";
 
 const Home = () => {
-  const { currentUser } = useRecoilValue(loginSuccessState);
+  const login = useRecoilValue(loginSuccessState);
   const onLogout = () => {
     localStorage.clear();
     window.location.reload();
   }
+
+
   return (
     <div>
       Home
-      {currentUser ? (
+      {login.currentUser ? (
         <span onClick={onLogout}>
           <Link to="/">Logout</Link>
         </span>

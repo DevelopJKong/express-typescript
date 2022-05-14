@@ -17,3 +17,8 @@ export const loginFailureState = atom<ILogin>({
   key: "Fail",
   default: { currentUser: "", token:"", isFetching: false, error: true , expire: Date.now() },
 });
+
+export const logOutState = atom<ILogin>({
+  key: "Logout",
+  default: { currentUser: "", token:"", isFetching: false, error: false , expire: 0 },
+});

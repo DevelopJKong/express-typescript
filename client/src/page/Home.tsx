@@ -1,14 +1,17 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useRecoilValue } from "recoil";
-import { loginSuccessState } from "../atoms";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { loginSuccessState, logOutState } from "../atoms";
 
 const Home = () => {
-  const login = useRecoilValue(loginSuccessState);
-  const onLogout = () => {
-    localStorage.clear();
-    window.location.reload();
-  }
+  const [login, setLogin] = useRecoilState(loginSuccessState);
+  const logout = useRecoilValue(logOutState);
 
+  const onLogout = () => {
+    setLogin(logout);
+    localStorage.setItem("Login", JSON.stringify(logout));
+  };
+  
 
   return (
     <div>

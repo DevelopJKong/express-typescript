@@ -14,8 +14,8 @@ import {
 
 
 const persistConfig = {
-    key: "33",
-    version: 1.1,
+    key: "root",
+    version: 1,
     storage,
   };
 

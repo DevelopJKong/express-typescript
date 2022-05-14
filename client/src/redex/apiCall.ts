@@ -1,5 +1,11 @@
 import { AppDispatch } from "./store";
-import { loginFailure, loginStart, loginSuccess } from "./userRedux";
+import {
+  loginFailure,
+  loginStart,
+  loginSuccess,
+  logout,
+  UserState,
+} from "./userRedux";
 
 export const login = async (
   dispatch: AppDispatch,
@@ -16,12 +22,16 @@ export const login = async (
         body: JSON.stringify(user),
       })
     ).json();
-    if (data.message === "Invalid user or password" ) {
-       throw Error();
+    if (data.message === "Invalid user or password") {
+      throw Error();
     }
     dispatch(loginSuccess(data));
   } catch (error) {
     console.log(error);
     dispatch(loginFailure());
   }
+};
+
+export const logoutStart = (dispatch: AppDispatch, state: UserState) => {
+  dispatch(logout());
 };

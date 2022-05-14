@@ -13,7 +13,7 @@ const Router = () => {
           <Home />
         </Route>
         <Route path="/login" >
-          {user ?  <Home/> : <Login />}
+          {user ?  <Redirect to="/"/> : <Login />}
         </Route>
         <Route path="/user">
           <User />

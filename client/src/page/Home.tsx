@@ -55,9 +55,15 @@ const Home = () => {
               <Link to="/login">Login</Link>
             </NavListItem>
           )}
-          <NavListItem left={"0px"}>
-            <Link to="/about">About Me</Link>
-          </NavListItem>
+          {login.currentUser ? (
+            <NavListItem left={"0px"}>
+              <Link to="/user">User</Link>
+            </NavListItem>
+          ) : (
+            <NavListItem left={"0px"}>
+              <Link to="/register">Register</Link>
+            </NavListItem>
+          )}
         </NavList>
       </Nav>
     </Container>

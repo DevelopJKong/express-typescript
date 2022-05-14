@@ -6,7 +6,7 @@ const apiRouter = express.Router();
 apiRouter.get("/",first);
 apiRouter.get("/user",userAll);
 apiRouter.get("/logout",logout);
-apiRouter.post("/signup",signup);
+apiRouter.post("/register",signup);
 apiRouter.post("/login",login);
 
 export default apiRouter;

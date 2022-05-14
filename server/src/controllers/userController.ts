@@ -9,10 +9,13 @@ export async function signup(req: Request, res: Response): Promise<Response> {
   //console.log(username,password,name,email,url);
   //과제
   //try catch 로 감싸주기
+  console.log(username,password,name,email,avatar,socialOnly,regison);
+  
   const found = await userRepository.findByUsername(username);
   if (found) {
-    return res.status(409).json({ message: `${username} already exists` });
+    return res.status(409).json({ message: `the username already exists` });
   }
+  console.log(found);
   const hashed = await bcrypt.hash(password, config.bcrypt.saltRounds);
   const userId = await userRepository.createUser({
     username,
@@ -23,6 +26,7 @@ export async function signup(req: Request, res: Response): Promise<Response> {
     socialOnly,
     regison,
   });
+  console.log(userId);
   const token = createJwtToken(userId);
   return res.status(201).json({ token, username });
 }
@@ -32,9 +36,6 @@ export async function login(req: Request, res: Response): Promise<Response> {
   //try catch 로 감싸주기
   const { username, password } = req.body;
   const user = await userRepository.findByUsername(username);
-  console.log(typeof username, typeof password); 
-  console.log(username,password);
-  console.log(user);
   if (!user) {
     return res.status(401).json({ message: 'Invalid user or password' });
   }

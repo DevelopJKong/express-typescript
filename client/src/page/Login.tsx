@@ -34,6 +34,7 @@ const LogoImg = styled.img`
   width: 100px;
   height: 100px;
   border-radius: 50px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
 `;
 
 const Title = styled.h1`
@@ -88,7 +89,6 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<IForm>();
-
   const setLoginSuccess = useSetRecoilState(loginSuccessState);
   const [loginFailure, setLoginFailure] = useRecoilState(loginFailureState);
 
@@ -154,8 +154,11 @@ const Login = () => {
           <Button>LOGIN</Button>
           <Error>{errors?.username?.message}</Error>
           <Error>{errors?.password?.message}</Error>
-          <LinkBtn to={`/`}>DO NOT YOU REMEMBER THE PASSWORD?</LinkBtn>
-          <LinkBtn to={`/login`}>CREATE A NEW ACCOUNT</LinkBtn>
+          <LinkBtn to={`/register`}>CREATE A NEW ACCOUNT &rarr;</LinkBtn>
+          <LinkBtn to={`/`}>GO BACK HOME &rarr;</LinkBtn>
+          <LinkBtn to={`/find`}>
+            DO NOT YOU REMEMBER THE PASSWORD? &rarr;
+          </LinkBtn>
         </Form>
       </Wrapper>
     </Container>

@@ -6,10 +6,8 @@ import { config } from './../config';
 
 export async function signup(req: Request, res: Response): Promise<Response> {
   const { username, password, name, email, avatar, socialOnly, regison } = req.body;
-  //console.log(username,password,name,email,url);
   //과제
   //try catch 로 감싸주기
-  console.log(username,password,name,email,avatar,socialOnly,regison);
   
   const found = await userRepository.findByUsername(username);
   if (found) {
@@ -49,7 +47,7 @@ export async function login(req: Request, res: Response): Promise<Response> {
 
 
 
-export function createJwtToken(id: number) {
+function createJwtToken(id: number) {
   return jwt.sign({ id }, config.jwt.secretKey, {
     expiresIn: config.jwt.expiresInSec,
   });

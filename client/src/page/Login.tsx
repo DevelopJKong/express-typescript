@@ -81,12 +81,14 @@ const LinkBtn = styled(Link)`
 interface IForm {
   username: string;
   password: string;
+  extraError?:string;
 }
 
 const Login = () => {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm<IForm>();
   const setLoginSuccess = useSetRecoilState(loginSuccessState);
@@ -117,6 +119,7 @@ const Login = () => {
         expire: Date.now(),
       });
     } catch (error) {
+      setError("extraError", { message: "Invalid user or password" });
       return setLoginFailure(loginFailure);
     }
   };
@@ -154,6 +157,7 @@ const Login = () => {
           <Button>LOGIN</Button>
           <Error>{errors?.username?.message}</Error>
           <Error>{errors?.password?.message}</Error>
+          <Error>{errors?.extraError?.message}</Error>
           <LinkBtn to={`/register`}>CREATE A NEW ACCOUNT &rarr;</LinkBtn>
           <LinkBtn to={`/`}>GO BACK HOME &rarr;</LinkBtn>
           <LinkBtn to={`/find`}>

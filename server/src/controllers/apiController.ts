@@ -7,6 +7,5 @@ export const first = (req: Request, res: Response): object => {
 
 export async function userAll(req: Request, res: Response): Promise<Response> {
   const user = await userRepository.findAll({});
-  console.log(user, 'server');
   return res.status(200).json(user);
 }

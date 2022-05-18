@@ -2,7 +2,6 @@ import { CreateBoardTypeOuput } from './dto/board.dto';
 import { User } from './../user/user';
 import SQ from 'sequelize';
 import { sequelize } from '../../db';
-import { Sequelize } from 'sequelize';
 const DataTypes = SQ.DataTypes;
 
 export const Board = sequelize.define(
@@ -51,19 +50,8 @@ export const Board = sequelize.define(
 
 Board.belongsTo(User);
 
-const INCLUDE_USER = {
-  attributes: [
-    'id',
-    'text',
-    'createdAt',
-    'userId',
-    [Sequelize.col('user.name'), 'name'],
-    [Sequelize.col('user.username'), 'username'],
-    [Sequelize.col('user.url'), 'url'],
-  ],
-  include: {
-    model: User,
-    attributes: [],
-  },
-};
 
+export async function findAll(obj:any) {
+  const boards = await Board.findAll({ order: [['id', 'DESC']] });
+  return boards;
+}

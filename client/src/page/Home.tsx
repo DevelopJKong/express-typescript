@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Boards from "../components/Boards";
 import Categories from "../components/Categories";
 import Footer from "../components/Footer";
 import Nav from "../components/Nav";
@@ -16,6 +17,7 @@ const Home = () => {
     <Container>
       <Nav />
       <Slider />
+      <Boards />
       <Categories />
       <Footer />
     </Container>

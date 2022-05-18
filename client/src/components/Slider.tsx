@@ -122,9 +122,6 @@ const Slider = () => {
     };
   }, [slideIndex]);
 
-  // 2 1 0 2 1 0 2 1 0
-  // 2 1 0 1 2 1 0 1 2
-
   return (
     <Container>
       <Arrow direction="left" onClick={() => handleClick("left")}>

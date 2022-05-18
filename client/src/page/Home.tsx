@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Content from "../components/Content";
+import Categories from "../components/Categories";
 import Footer from "../components/Footer";
 import Nav from "../components/Nav";
 import Slider from "../components/Slider";
@@ -16,7 +16,7 @@ const Home = () => {
     <Container>
       <Nav />
       <Slider />
-      <Content />
+      <Categories />
       <Footer />
     </Container>
   );

@@ -39,7 +39,6 @@ export const User = sequelize.define(
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
-
     createdAt: {
       field: 'createdAt',
       type: 'TIMESTAMP',
@@ -52,6 +51,7 @@ export const User = sequelize.define(
       defaultValue: SQ.literal('CURRENT_TIMESTAMP'),
       allowNull: false,
     },
+    
   },
   { timestamps: false }
 );

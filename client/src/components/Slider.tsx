@@ -1,5 +1,6 @@
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@material-ui/icons";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const sliderItems = [
@@ -9,6 +10,7 @@ const sliderItems = [
     title: "Cafe Small House ☕",
     desc: "I'd like to be Javascript developer",
     bg: "f5fafd",
+    url: "/contact"
   },
   {
     id: 2,
@@ -16,6 +18,7 @@ const sliderItems = [
     title: "Cafe Small House ☕",
     desc: "I like to use Node.js and Nest.js ⭐",
     bg: "fcf1ed",
+    url: "/boards"
   },
   {
     id: 3,
@@ -23,6 +26,7 @@ const sliderItems = [
     title: "Cafe Small House ☕",
     desc: "When i make view part, i usually use React 😎",
     bg: "fbf0f4",
+    url: "/"
   },
 ];
 
@@ -135,7 +139,9 @@ const Slider = () => {
             <InfoContainer>
               <Title>{item.title}</Title>
               <Desc>{item.desc}</Desc>
-              <Button>CONTACT ME</Button>
+              <Link to={item.url}>
+                <Button>CLICK HERE</Button>
+              </Link>
             </InfoContainer>
           </Slide>
         ))}

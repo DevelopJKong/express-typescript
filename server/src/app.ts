@@ -19,7 +19,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/api',apiRouter);
 
-
 sequelize.sync().then(() => {
   console.log("mysql is connecting");
   app.listen(config.port, () => {

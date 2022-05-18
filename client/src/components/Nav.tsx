@@ -4,11 +4,10 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
 import { loginSuccessState, logOutState } from "../atoms";
 
-
 const Container = styled.nav`
   width: 100%;
   height: 50px;
-  background-color: #9B8281;
+  background-color: #9b8281;
   color: white;
   display: flex;
   align-items: center;
@@ -24,39 +23,41 @@ const NavListItem = styled.li<{ left: string }>`
   padding-left: ${(props) => props.left};
 `;
 const Nav = () => {
-    const [login, setLogin] = useRecoilState(loginSuccessState);
-    const logout = useRecoilValue(logOutState);
-  
-    const onLogout = () => {
-      setLogin(logout);
-      localStorage.setItem("Login", JSON.stringify(logout));
-    };
-  return <Container>
-              <NavList flex={1}>
-          <NavListItem left={"10px"}>Cafe Small House</NavListItem>
-        </NavList>
+  const [login, setLogin] = useRecoilState(loginSuccessState);
+  const logout = useRecoilValue(logOutState);
 
-        <NavList flex={4}>
-          {login.currentUser ? (
-            <NavListItem onClick={onLogout} left={"0px"}>
-              <Link to="/">Logout</Link>
-            </NavListItem>
-          ) : (
-            <NavListItem left={"0px"}>
-              <Link to="/login">Login</Link>
-            </NavListItem>
-          )}
-          {login.currentUser ? (
-            <NavListItem left={"0px"}>
-              <Link to="/user">User</Link>
-            </NavListItem>
-          ) : (
-            <NavListItem left={"0px"}>
-              <Link to="/register">Register</Link>
-            </NavListItem>
-          )}
-        </NavList>
-  </Container>;
+  const onLogout = () => {
+    setLogin(logout);
+    localStorage.setItem("Login", JSON.stringify(logout));
+  };
+  return (
+    <Container>
+      <NavList flex={1}>
+        <NavListItem left={"10px"}>Cafe Small House</NavListItem>
+      </NavList>
+
+      <NavList flex={4}>
+        {login.currentUser ? (
+          <NavListItem onClick={onLogout} left={"0px"}>
+            <Link to="/">Logout</Link>
+          </NavListItem>
+        ) : (
+          <NavListItem left={"0px"}>
+            <Link to="/login">Login</Link>
+          </NavListItem>
+        )}
+        {login.currentUser ? (
+          <NavListItem left={"0px"}>
+            <Link to="/user">User</Link>
+          </NavListItem>
+        ) : (
+          <NavListItem left={"0px"}>
+            <Link to="/register">Register</Link>
+          </NavListItem>
+        )}
+      </NavList>
+    </Container>
+  );
 };
 
 export default Nav;

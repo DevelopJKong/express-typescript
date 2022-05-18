@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { loginSuccessState } from "../atoms";
 
-interface Type {
+interface IUserType {
   id: number;
   username: string;
   password: string;
@@ -13,7 +13,7 @@ interface Type {
 
 const User = () => {
   const { currentUser } = useRecoilValue(loginSuccessState);
-  const [user, setUser] = useState<Type[]>([]);
+  const [user, setUser] = useState<IUserType[]>([]);
   const callApi = async () => {
     const data = await (await fetch(`/api/user`)).json();
     setUser(data);

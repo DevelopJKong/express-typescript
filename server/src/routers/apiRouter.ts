@@ -1,11 +1,13 @@
 import express from 'express';
 import { first, userAll } from '../controllers/apiController';
-import { login, logout, signup } from '../controllers/userController';
+import { login, signup } from '../controllers/userController';
+import boardRouter from './boardRouter';
 const apiRouter = express.Router();
+
+apiRouter.use("/boards",boardRouter);
 
 apiRouter.get("/",first);
 apiRouter.get("/user",userAll);
-apiRouter.get("/logout",logout);
 apiRouter.post("/register",signup);
 apiRouter.post("/login",login);
 

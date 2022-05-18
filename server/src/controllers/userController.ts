@@ -47,12 +47,9 @@ export async function login(req: Request, res: Response): Promise<Response> {
   return res.status(200).json({ token, username });
 }
 
-export async function logout(req: Request, res: Response): Promise<void> {
-  console.log(req);
-  return res.end();
-}
 
-function createJwtToken(id: number) {
+
+export function createJwtToken(id: number) {
   return jwt.sign({ id }, config.jwt.secretKey, {
     expiresIn: config.jwt.expiresInSec,
   });

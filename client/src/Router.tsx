@@ -1,6 +1,7 @@
 import { BrowserRouter, Switch, Route ,Redirect} from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { loginSuccessState } from "./atoms";
+import SliderNew from "./components/SliderNew";
 import Board from "./page/Board";
 import Home from "./page/Home";
 import Login from "./page/Login";
@@ -33,6 +34,10 @@ const Router = () => {
         <Route path="/boards">
           <Board />
         </Route>
+        <Route path="/slider">
+          <SliderNew/>
+        </Route>
+
 
       </Switch>
     </BrowserRouter>
